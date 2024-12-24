@@ -1,0 +1,9 @@
+{
+	"name": "ADFfileprocess",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d41346e3-e59a-40ee-91a5-ec463e2220ee",
+		"tenantId": "3fb0786f-937d-40cb-9040-ca5369150ebf"
+	}
+}

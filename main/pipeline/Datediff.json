@@ -1,0 +1,60 @@
+{
+	"name": "Datediff",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@range(0,div(div(sub(ticks(formatDateTime(utcNow(), 'yyyy-MM-dd')),ticks(pipeline().parameters.Startdate)),36000000000),24))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "copy data",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "var1",
+					"value": {
+						"value": "@string(ticks(utcNow()))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Startdate": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"var1": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-12-24T23:22:09Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
