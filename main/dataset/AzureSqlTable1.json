@@ -9,21 +9,18 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "id",
-				"type": "varchar"
+				"name": "OrderId",
+				"type": "int",
+				"precision": 10
 			},
 			{
-				"name": "rows",
-				"type": "varchar"
-			},
-			{
-				"name": "lastmodified",
-				"type": "varchar"
+				"name": "OrderUnits",
+				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "sample"
+			"table": "ArrayStack"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
