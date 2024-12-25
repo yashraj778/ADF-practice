@@ -13,7 +13,14 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "flatten1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          OrderId as integer,",
@@ -22,7 +29,15 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source1"
+				"     format: 'table') ~> source1",
+				"source1 derive(OrderUnits = split(replace(replace(OrderUnits,'[',''),']',''),',')) ~> derivedColumn1",
+				"derivedColumn1 foldDown(unroll(OrderUnits),",
+				"     mapColumn(",
+				"          OrderId,",
+				"          OrderUnits",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1"
 			]
 		}
 	}
